@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>תהילה סממה — זמרת, יוצרת ואשת השראה</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@100;200;300;400&family=Heebo:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@100;200;300;400&family=Assistant:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,238 +14,467 @@
   --pearl:#E8DFD0;
   --gold:#C9A84C;
   --gold-light:#E2C97E;
+  --gold-dim:rgba(201,168,76,0.45);
   --brown-deep:#2C2416;
-  --brown-mid:#6B5744;
+  --brown-mid:#7A6654;
   --hero-dark:#1A1209;
+  --card-shadow:0 2px 18px rgba(44,36,22,0.07);
+  --card-shadow-hover:0 8px 32px rgba(44,36,22,0.13);
 }
 html{scroll-behavior:smooth}
-body{font-family:'Heebo',sans-serif;background:var(--cream);color:var(--brown-deep);direction:rtl;overflow-x:hidden}
+body{
+  font-family:'Assistant',sans-serif;
+  background:var(--cream);
+  color:var(--brown-deep);
+  direction:rtl;
+  overflow-x:hidden;
+  font-size:16px;
+  line-height:1.7;
+}
 
-/* ====== TOPBAR ====== */
-.topbar{
-  background:var(--hero-dark);
-  padding:0.4rem 3.5rem;
-  display:flex;align-items:center;justify-content:space-between;
-  position:relative;z-index:101;
-}
-.topbar-text{
-  font-family:'Heebo',sans-serif;
-  font-size:0.7rem;font-weight:300;
-  color:rgba(255,255,255,0.45);
-  letter-spacing:0.12em;
-}
+/* ====== TYPOGRAPHY ====== */
+h1,h2{font-family:'Noto Serif Hebrew',serif;font-weight:200;letter-spacing:0.05em}
+h3,h4,p,a,button,input,select,textarea,label,li,span.eyebrow,cite{font-family:'Assistant',sans-serif}
 
 /* ====== NAV ====== */
 nav{
-  position:sticky;top:0;right:0;left:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.2rem 3.5rem;
-  background:rgba(26,18,9,0.0);
-  transition:background 0.45s,backdrop-filter 0.45s;
+  position:fixed;top:0;right:0;left:0;z-index:200;
+  transition:background 0.4s,backdrop-filter 0.4s,box-shadow 0.4s;
 }
-nav.scrolled{background:rgba(26,18,9,0.92);backdrop-filter:blur(14px)}
-.nav-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;font-weight:200;color:#fff;text-decoration:none;letter-spacing:0.1em}
+.nav-spiritual{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0.35rem 3.5rem;
+  font-family:'Assistant',sans-serif;
+  font-size:11px;font-weight:400;
+  color:rgba(255,255,255,0.28);
+  letter-spacing:0.08em;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  transition:color 0.4s,border-color 0.4s;
+}
+.nav-main{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 3.5rem;
+}
+nav.scrolled{
+  background:rgba(250,247,242,0.96);
+  backdrop-filter:blur(16px);
+  box-shadow:0 1px 24px rgba(44,36,22,0.08);
+}
+nav.scrolled .nav-spiritual{
+  color:rgba(107,87,68,0.5);
+  border-bottom-color:rgba(201,168,76,0.12);
+}
+nav.scrolled .nav-logo{color:var(--brown-deep)}
+nav.scrolled .nav-links a{color:var(--brown-mid)}
+nav.scrolled .nav-links a:hover{color:var(--gold)}
+
+.nav-logo{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:1.4rem;font-weight:200;
+  color:#fff;text-decoration:none;
+  letter-spacing:0.1em;
+  transition:color 0.4s;
+}
 .nav-links{display:flex;gap:2.2rem;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.82rem;font-weight:300;letter-spacing:0.1em;transition:color 0.2s}
+.nav-links a{
+  color:rgba(255,255,255,0.78);
+  text-decoration:none;
+  font-size:0.88rem;font-weight:400;
+  letter-spacing:0.06em;
+  transition:color 0.2s;
+}
 .nav-links a:hover{color:var(--gold-light)}
 
 /* ====== HERO ====== */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--hero-dark)}
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  overflow:hidden;background:var(--hero-dark);
+}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.42}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,18,9,0.25) 0%,rgba(26,18,9,0.1) 25%,rgba(26,18,9,0.45) 60%,rgba(26,18,9,0.97) 100%)}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(26,18,9,0.3) 0%,
+    rgba(26,18,9,0.08) 25%,
+    rgba(26,18,9,0.42) 60%,
+    rgba(26,18,9,0.97) 100%);
+}
 .hero-content{position:relative;z-index:2;padding:2rem;animation:fadeUp 1.8s cubic-bezier(.22,.61,.36,1) both}
 
-.logo-wrap{margin-bottom:2.2rem}
-.logo-main{font-family:'Noto Serif Hebrew',serif;font-size:clamp(5.5rem,15vw,11rem);font-weight:100;color:#fff;line-height:1;letter-spacing:0.14em;display:block}
-.logo-ornament{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin:1rem auto 0.8rem}
-.logo-line{flex:1;max-width:90px;height:0.5px;background:var(--gold);opacity:0.65}
-.logo-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:0.8}
-.logo-sub{font-family:'Heebo',sans-serif;font-size:0.68rem;font-weight:200;color:var(--gold-light);letter-spacing:0.6em;text-transform:uppercase;display:block;opacity:0.85}
-.hero-tagline{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1rem,2.5vw,1.45rem);font-weight:200;color:rgba(255,255,255,0.82);margin:2rem 0 0.6rem;letter-spacing:0.12em}
+.logo-wrap{margin-bottom:2rem}
+.logo-main{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:clamp(5.5rem,15vw,11rem);
+  font-weight:100;color:#fff;
+  line-height:1;letter-spacing:0.14em;display:block;
+}
+.logo-ornament{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin:0.9rem auto 0.7rem}
+.logo-line{flex:1;max-width:90px;height:0.5px;background:var(--gold);opacity:0.6}
+.logo-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:0.75}
+.logo-sub{
+  font-family:'Assistant',sans-serif;
+  font-size:0.65rem;font-weight:400;
+  color:var(--gold-light);letter-spacing:0.65em;
+  text-transform:uppercase;display:block;opacity:0.8;
+}
+.hero-tagline{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:clamp(1rem,2.4vw,1.4rem);font-weight:200;
+  color:rgba(255,255,255,0.8);
+  margin:1.8rem 0 0.5rem;letter-spacing:0.1em;
+}
 .hero-tagline em{color:var(--gold-light);font-style:normal}
-.hero-sub{font-size:0.78rem;font-weight:200;color:rgba(255,255,255,0.4);letter-spacing:0.3em;margin-bottom:3rem}
-.hero-cta{display:inline-block;padding:0.9rem 3.2rem;border:1px solid rgba(201,168,76,0.6);color:var(--gold-light);text-decoration:none;font-size:0.8rem;font-weight:300;letter-spacing:0.28em;transition:all 0.3s;cursor:pointer;background:transparent}
+.hero-sub{
+  font-family:'Assistant',sans-serif;
+  font-size:0.8rem;font-weight:300;
+  color:rgba(255,255,255,0.38);
+  letter-spacing:0.28em;margin-bottom:2.8rem;
+}
+.hero-cta{
+  display:inline-block;padding:0.88rem 3rem;
+  border:1px solid rgba(201,168,76,0.55);
+  color:var(--gold-light);text-decoration:none;
+  font-family:'Assistant',sans-serif;
+  font-size:0.82rem;font-weight:400;letter-spacing:0.25em;
+  transition:all 0.3s;background:transparent;
+}
 .hero-cta:hover{background:rgba(201,168,76,0.1);border-color:var(--gold);color:#fff}
-.scroll-hint{position:absolute;bottom:2.8rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0.3;animation:pulse 3s ease infinite}
-.scroll-hint span{font-size:0.58rem;letter-spacing:0.32em;color:#fff;font-weight:200}
-.scroll-line{width:1px;height:38px;background:linear-gradient(to bottom,#fff,transparent)}
+.scroll-hint{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  opacity:0.28;animation:pulse 3s ease infinite;
+}
+.scroll-hint span{font-family:'Assistant',sans-serif;font-size:0.58rem;letter-spacing:0.3em;color:#fff;font-weight:300}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,#fff,transparent)}
 
 /* ====== ABOUT ====== */
-.about{padding:8rem 4rem;max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
-.eyebrow{font-size:0.65rem;font-weight:300;letter-spacing:0.42em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;display:block}
-.about-text h2{font-family:'Noto Serif Hebrew',serif;font-size:clamp(2rem,4vw,3rem);font-weight:200;color:var(--brown-deep);line-height:1.35;letter-spacing:0.05em}
-.gold-rule{width:38px;height:1px;background:var(--gold);margin:1.6rem 0;opacity:0.65}
-.about-text p{font-size:0.97rem;font-weight:300;line-height:2.1;color:var(--brown-mid);margin-bottom:1rem}
-.btn-bio{
-  display:inline-block;margin-top:1.2rem;
-  padding:0.8rem 2.4rem;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  font-family:'Heebo',sans-serif;
-  font-size:0.82rem;font-weight:300;letter-spacing:0.22em;
-  cursor:pointer;background:transparent;
-  transition:all 0.3s;
+.about{
+  padding:9rem 5rem;max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center;
 }
-.btn-bio:hover{background:var(--gold);color:#fff}
+.eyebrow{
+  font-family:'Assistant',sans-serif;
+  font-size:0.68rem;font-weight:500;letter-spacing:0.45em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:1.2rem;display:block;
+}
+.about-text h2{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:200;
+  color:var(--brown-deep);line-height:1.3;
+}
+.gold-rule{width:36px;height:1px;background:var(--gold);margin:1.6rem 0;opacity:0.6}
+.about-text p{
+  font-family:'Assistant',sans-serif;
+  font-size:1.02rem;font-weight:300;
+  line-height:1.95;color:var(--brown-mid);margin-bottom:0.9rem;
+}
+.btn-bio{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  margin-top:1.6rem;padding:0.82rem 2.2rem;
+  border:1px solid var(--gold-dim);
+  color:var(--gold);background:transparent;
+  font-family:'Assistant',sans-serif;
+  font-size:0.88rem;font-weight:500;letter-spacing:0.15em;
+  cursor:pointer;transition:all 0.3s;
+}
+.btn-bio:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn-bio i{font-size:0.8rem;transition:transform 0.3s}
+.btn-bio:hover i{transform:translateX(-3px)}
 .about-images{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 .about-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
-.about-img:first-child{margin-top:3rem}
+.about-img:first-child{margin-top:3.5rem}
 
 /* ====== SERVICES ====== */
-.services{background:var(--hero-dark);padding:8rem 4rem}
+.services{background:#F5F0E8;padding:9rem 5rem}
 .services-inner{max-width:1200px;margin:0 auto}
-.sec-head{text-align:center;margin-bottom:4.5rem}
-.sec-head h2{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:#fff;letter-spacing:0.08em;margin-top:1rem}
-.gold-rule-c{width:38px;height:1px;background:var(--gold);margin:1.5rem auto;opacity:0.55}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(201,168,76,0.12)}
-.card{
-  background:var(--hero-dark);padding:3rem 1.8rem;text-align:center;
-  cursor:pointer;transition:background 0.3s;
-  border:none;width:100%;color:inherit;font-family:inherit;
+.sec-head{text-align:center;margin-bottom:4rem}
+.sec-head h2{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;
+  color:var(--brown-deep);letter-spacing:0.06em;margin-top:0.8rem;
 }
-.card:hover{background:rgba(201,168,76,0.07)}
-.card:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
-.card-letter{font-family:'Noto Serif Hebrew',serif;font-size:2.8rem;font-weight:100;color:var(--gold);opacity:0.35;margin-bottom:1.2rem;display:block;line-height:1}
-.card h3{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;font-weight:300;color:#fff;margin-bottom:0.8rem;letter-spacing:0.08em}
-.card p{font-size:0.8rem;font-weight:200;color:rgba(255,255,255,0.38);line-height:1.9}
-.card-more{display:inline-block;margin-top:1.2rem;font-size:0.7rem;font-weight:300;letter-spacing:0.25em;color:var(--gold);opacity:0.7}
+.gold-rule-c{width:36px;height:1px;background:var(--gold);margin:1.4rem auto;opacity:0.55}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:1.4rem;
+}
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:2.8rem 2rem 2.4rem;
+  text-align:center;
+  cursor:pointer;
+  border:none;width:100%;color:inherit;
+  box-shadow:var(--card-shadow);
+  transition:transform 0.28s ease,box-shadow 0.28s ease;
+  position:relative;overflow:hidden;
+}
+.card::after{
+  content:'';position:absolute;bottom:0;right:0;left:0;
+  height:2px;background:linear-gradient(to left,var(--gold),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-hover)}
+.card:hover::after{opacity:1}
+.card:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.card-letter{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:2.5rem;font-weight:100;
+  color:var(--gold);opacity:0.4;
+  margin-bottom:1rem;display:block;line-height:1;
+}
+.card h3{
+  font-family:'Assistant',sans-serif;
+  font-size:1.05rem;font-weight:600;
+  color:var(--brown-deep);margin-bottom:0.65rem;letter-spacing:0.02em;
+}
+.card p{
+  font-family:'Assistant',sans-serif;
+  font-size:0.85rem;font-weight:300;
+  color:var(--brown-mid);line-height:1.75;
+}
+.card-more{
+  display:inline-block;margin-top:1.3rem;
+  font-family:'Assistant',sans-serif;
+  font-size:0.72rem;font-weight:500;
+  letter-spacing:0.2em;color:var(--gold);opacity:0.8;
+}
 
 /* ====== TESTIMONIALS ====== */
-.testimonials{padding:8rem 4rem;background:var(--pearl)}
-.testimonials-inner{max-width:1000px;margin:0 auto;text-align:center}
-.testimonials h2{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:var(--brown-deep);letter-spacing:0.08em;margin-top:1rem}
-.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-top:4rem}
-.tcard{background:var(--cream);padding:2.8rem 2.2rem;text-align:right;position:relative}
-.tcard::before{content:'\201C';font-family:'Noto Serif Hebrew',serif;font-size:5.5rem;color:var(--gold);opacity:0.18;position:absolute;top:-0.8rem;right:1.5rem;line-height:1}
-.tcard p{font-size:0.93rem;font-weight:300;line-height:2;color:var(--brown-mid);padding-top:1.4rem;margin-bottom:1.6rem}
-.tcard cite{font-size:0.72rem;font-weight:400;letter-spacing:0.18em;color:var(--gold);font-style:normal}
+.testimonials{padding:9rem 5rem;background:var(--cream)}
+.testimonials-inner{max-width:1050px;margin:0 auto;text-align:center}
+.testimonials h2{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;
+  color:var(--brown-deep);letter-spacing:0.06em;margin-top:0.8rem;
+}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-top:3.5rem}
+.tcard{
+  background:#fff;border-radius:12px;
+  padding:2.6rem 2.2rem;text-align:right;
+  box-shadow:var(--card-shadow);position:relative;
+}
+.tcard::before{
+  content:'\201C';
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:5rem;color:var(--gold);opacity:0.15;
+  position:absolute;top:-0.5rem;right:1.5rem;line-height:1;
+}
+.tcard p{
+  font-family:'Assistant',sans-serif;
+  font-size:0.95rem;font-weight:300;
+  line-height:1.95;color:var(--brown-mid);
+  padding-top:1.2rem;margin-bottom:1.4rem;
+}
+.tcard cite{
+  font-family:'Assistant',sans-serif;
+  font-size:0.72rem;font-weight:500;
+  letter-spacing:0.16em;color:var(--gold);font-style:normal;
+}
 
 /* ====== CONTACT ====== */
-.contact-section{padding:8rem 4rem;max-width:600px;margin:0 auto;text-align:center}
-.contact-section h2{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:var(--brown-deep);letter-spacing:0.08em;margin-top:1rem}
-.contact-section > p{font-size:0.93rem;font-weight:300;line-height:2;color:var(--brown-mid);margin-bottom:3rem}
+.contact-section{padding:9rem 5rem;max-width:600px;margin:0 auto;text-align:center}
+.contact-section h2{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;
+  color:var(--brown-deep);letter-spacing:0.06em;margin-top:0.8rem;
+}
+.contact-section > p{
+  font-family:'Assistant',sans-serif;
+  font-size:0.97rem;font-weight:300;
+  line-height:1.95;color:var(--brown-mid);margin-bottom:2.8rem;
+}
 .form{display:flex;flex-direction:column;gap:1.1rem}
-.form input,.form textarea,.form select{width:100%;padding:0.85rem 0.2rem;border:none;border-bottom:1px solid var(--pearl);background:transparent;font-family:'Heebo',sans-serif;font-size:0.88rem;font-weight:300;color:var(--brown-deep);outline:none;transition:border-color 0.2s;-webkit-appearance:none;border-radius:0}
+.form input,.form textarea,.form select{
+  width:100%;padding:0.82rem 0.2rem;
+  border:none;border-bottom:1px solid #DDD4C4;
+  background:transparent;
+  font-family:'Assistant',sans-serif;
+  font-size:0.92rem;font-weight:300;color:var(--brown-deep);
+  outline:none;transition:border-color 0.2s;
+  -webkit-appearance:none;border-radius:0;
+}
+.form input::placeholder,.form textarea::placeholder{color:#B0A090}
 .form input:focus,.form textarea:focus,.form select:focus{border-bottom-color:var(--gold)}
-.form textarea{resize:vertical;min-height:110px;border:1px solid var(--pearl);padding:0.85rem 1rem}
+.form textarea{resize:vertical;min-height:110px;border:1px solid #DDD4C4;padding:0.82rem 1rem;border-radius:4px}
 .form textarea:focus{border-color:var(--gold)}
-.btn-submit{align-self:center;padding:0.9rem 3.8rem;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Heebo',sans-serif;font-size:0.8rem;letter-spacing:0.28em;cursor:pointer;transition:all 0.3s;margin-top:1rem}
+.btn-submit{
+  align-self:center;padding:0.88rem 3.5rem;
+  background:transparent;border:1px solid var(--gold);
+  color:var(--gold);
+  font-family:'Assistant',sans-serif;
+  font-size:0.85rem;font-weight:500;letter-spacing:0.22em;
+  cursor:pointer;transition:all 0.3s;margin-top:0.8rem;
+}
 .btn-submit:hover{background:var(--gold);color:#fff}
 
 /* ====== FOOTER ====== */
-footer{background:var(--hero-dark);padding:3.5rem 4rem}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.footer-logo-wrap{}
-.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:2rem;font-weight:100;color:rgba(255,255,255,0.5);letter-spacing:0.18em;display:block}
-.footer-tagline{font-size:0.72rem;font-weight:200;color:rgba(255,255,255,0.25);letter-spacing:0.15em;margin-top:0.3rem}
-
-/* Social icons */
-.social-links{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap}
-.social-link{
-  display:flex;align-items:center;justify-content:center;
-  width:40px;height:40px;
-  border:1px solid rgba(201,168,76,0.3);
-  color:rgba(255,255,255,0.55);
-  text-decoration:none;
-  font-size:1rem;
-  transition:all 0.25s;
-  border-radius:0;
+footer{background:var(--hero-dark);padding:4rem 5rem}
+.footer-inner{max-width:1150px;margin:0 auto}
+.footer-top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  flex-wrap:wrap;gap:2.5rem;
+  padding-bottom:2.5rem;
+  border-bottom:1px solid rgba(255,255,255,0.07);
 }
-.social-link:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.08)}
-.social-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-
-/* Music links */
-.music-links{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+.footer-logo{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:2rem;font-weight:100;
+  color:rgba(255,255,255,0.45);letter-spacing:0.18em;display:block;
+}
+.footer-tagline{
+  font-family:'Assistant',sans-serif;
+  font-size:0.72rem;font-weight:300;
+  color:rgba(255,255,255,0.22);letter-spacing:0.15em;margin-top:0.3rem;
+}
+.music-links{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
 .music-link{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  padding:0.55rem 1.4rem;
-  border:1px solid rgba(201,168,76,0.3);
-  color:rgba(255,255,255,0.55);
-  text-decoration:none;
-  font-size:0.75rem;font-weight:300;letter-spacing:0.15em;
+  display:inline-flex;align-items:center;gap:0.45rem;
+  padding:0.5rem 1.3rem;
+  border:1px solid rgba(201,168,76,0.28);
+  color:rgba(255,255,255,0.5);text-decoration:none;
+  font-family:'Assistant',sans-serif;
+  font-size:0.75rem;font-weight:400;letter-spacing:0.12em;
   transition:all 0.25s;
 }
 .music-link:hover{border-color:var(--gold);color:var(--gold-light)}
-.music-link i{font-size:0.85rem}
-
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:2rem}
-.footer-copy{font-size:0.7rem;font-weight:200;color:rgba(255,255,255,0.2);letter-spacing:0.1em}
+.music-link i{font-size:0.82rem}
+.footer-social-col{display:flex;flex-direction:column;gap:0.9rem;align-items:flex-start}
+.social-label{
+  font-family:'Assistant',sans-serif;
+  font-size:0.62rem;letter-spacing:0.38em;
+  color:rgba(255,255,255,0.25);font-weight:400;text-transform:uppercase;
+}
+.social-links{display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap}
+.social-link{
+  display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;
+  border:1px solid rgba(201,168,76,0.22);
+  color:rgba(255,255,255,0.48);text-decoration:none;
+  font-size:0.95rem;transition:all 0.25s;
+}
+.social-link:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.07)}
+.social-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;padding-top:2rem;
+}
+.footer-copy{
+  font-family:'Assistant',sans-serif;
+  font-size:0.7rem;font-weight:300;
+  color:rgba(255,255,255,0.2);letter-spacing:0.08em;
+}
 .footer-contact-links{display:flex;gap:1.5rem}
-.footer-contact-links a{font-size:0.72rem;font-weight:300;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s}
+.footer-contact-links a{
+  font-family:'Assistant',sans-serif;
+  font-size:0.72rem;font-weight:300;
+  color:rgba(255,255,255,0.32);text-decoration:none;
+  letter-spacing:0.06em;transition:color 0.2s;
+}
 .footer-contact-links a:hover{color:var(--gold-light)}
 
 /* ====== MODAL ====== */
 .modal-overlay{
-  display:none;
-  position:fixed;inset:0;z-index:500;
-  background:rgba(15,10,5,0.88);
-  backdrop-filter:blur(6px);
-  align-items:center;justify-content:center;
-  padding:2rem;
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(12,8,4,0.82);
+  backdrop-filter:blur(5px);
+  align-items:center;justify-content:center;padding:2rem;
 }
 .modal-overlay.open{display:flex}
 .modal{
   background:var(--cream);
-  max-width:680px;width:100%;
-  max-height:85vh;
-  overflow-y:auto;
+  border-radius:16px;
+  max-width:700px;width:100%;
+  max-height:88vh;overflow-y:auto;
   position:relative;
-  padding:3.5rem 3.5rem 3rem;
-  animation:modalIn 0.35s cubic-bezier(.22,.61,.36,1) both;
+  padding:3.5rem 4rem 3.2rem;
+  animation:modalIn 0.32s cubic-bezier(.22,.61,.36,1) both;
+  box-shadow:0 24px 80px rgba(0,0,0,0.35);
 }
 .modal-close{
-  position:absolute;top:1.2rem;left:1.5rem;
+  position:absolute;top:1.4rem;left:1.6rem;
   background:transparent;border:none;cursor:pointer;
-  font-size:1.2rem;color:var(--brown-mid);
-  line-height:1;padding:0.3rem;
-  transition:color 0.2s;
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  color:var(--brown-mid);font-size:1rem;border-radius:50%;
+  transition:background 0.2s,color 0.2s;
 }
-.modal-close:hover{color:var(--brown-deep)}
-.modal-close:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.modal-eyebrow{font-size:0.65rem;font-weight:300;letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;display:block}
-.modal h2{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:200;color:var(--brown-deep);line-height:1.3;margin-bottom:0.5rem}
-.modal-divider{width:38px;height:1px;background:var(--gold);margin:1.5rem 0;opacity:0.65}
-.modal-body{font-size:0.95rem;font-weight:300;line-height:2.1;color:var(--brown-mid)}
-.modal-body p{margin-bottom:1.2rem}
-.modal-body h3{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;font-weight:400;color:var(--brown-deep);margin:1.8rem 0 0.6rem}
-.modal-bsd{font-size:0.75rem;font-weight:300;color:var(--gold);letter-spacing:0.2em;margin-bottom:1.5rem;display:block}
+.modal-close:hover{background:var(--pearl);color:var(--brown-deep)}
+.modal-close:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.modal-eyebrow{
+  font-family:'Assistant',sans-serif;
+  font-size:0.65rem;font-weight:500;
+  letter-spacing:0.42em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:0.8rem;display:block;
+}
+.modal h2{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:clamp(1.6rem,3vw,2.2rem);font-weight:200;
+  color:var(--brown-deep);line-height:1.25;
+}
+.modal-divider{width:36px;height:1px;background:var(--gold);margin:1.4rem 0;opacity:0.6}
+.modal-body{
+  font-family:'Assistant',sans-serif;
+  font-size:0.97rem;font-weight:300;
+  line-height:2;color:var(--brown-mid);
+}
+.modal-body p{margin-bottom:1.1rem}
+.modal-body h3{
+  font-family:'Assistant',sans-serif;
+  font-size:1rem;font-weight:600;
+  color:var(--brown-deep);margin:1.8rem 0 0.5rem;
+}
+.modal-bsd{
+  font-family:'Assistant',sans-serif;
+  font-size:0.72rem;font-weight:400;
+  color:var(--gold);letter-spacing:0.2em;margin-bottom:1.4rem;display:block;
+}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:0.12}}
-@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+/* ====== ANIMATIONS ====== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:0.28}50%{opacity:0.1}}
+@keyframes modalIn{from{opacity:0;transform:translateY(18px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+/* ====== FOCUS ====== */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+  outline:2px solid var(--gold);outline-offset:3px;
+}
 
-@media(max-width:900px){
-  .about{grid-template-columns:1fr;gap:3rem;padding:5rem 2rem}
+/* ====== RESPONSIVE ====== */
+@media(max-width:960px){
+  .about{grid-template-columns:1fr;gap:3rem;padding:6rem 2rem}
   .about-img:first-child{margin-top:0}
-  nav,.topbar{padding:1rem 1.5rem}
-  .nav-links{gap:1.2rem}
-  .services,.testimonials,.contact-section{padding:5rem 2rem}
+  nav .nav-spiritual,.nav-main{padding-right:1.5rem;padding-left:1.5rem}
+  .services,.testimonials,.contact-section{padding:6rem 2rem}
   footer{padding:3rem 2rem}
-  .modal{padding:2.5rem 2rem 2rem}
-  .footer-top{flex-direction:column;align-items:flex-start}
+  .footer-top{flex-direction:column}
+  .modal{padding:2.5rem 2rem 2rem;border-radius:12px}
+}
+@media(max-width:600px){
+  .nav-links{gap:1rem}
+  .nav-links a{font-size:0.8rem}
 }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar" role="banner" aria-label="כותרת עליונה">
-  <span class="topbar-text">בס"ד</span>
-  <span class="topbar-text">בשם ה' נעשה ונצליח</span>
-</div>
-
-<!-- NAV -->
+<!-- NAV with spiritual row -->
 <nav id="nav" role="navigation" aria-label="ניווט ראשי">
-  <a href="#" class="nav-logo" aria-label="תהילה — עמוד הבית">תהילה</a>
-  <ul class="nav-links">
-    <li><a href="#about">אודות</a></li>
-    <li><a href="#services">תחומי פעילות</a></li>
-    <li><a href="#testimonials">המלצות</a></li>
-    <li><a href="#contact">צור קשר</a></li>
-  </ul>
+  <div class="nav-spiritual" aria-label="ברכת פתיחה">
+    <span>בס"ד</span>
+    <span>בשם ה' נעשה ונצליח</span>
+  </div>
+  <div class="nav-main">
+    <a href="#" class="nav-logo" aria-label="תהילה — עמוד הבית">תהילה</a>
+    <ul class="nav-links">
+      <li><a href="#about">אודות</a></li>
+      <li><a href="#services">תחומי פעילות</a></li>
+      <li><a href="#testimonials">המלצות</a></li>
+      <li><a href="#contact">צור קשר</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -264,7 +493,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     </div>
     <p class="hero-tagline">מוזיקה · <em>השראה</em> · סיפור חיים</p>
     <p class="hero-sub">זמרת &nbsp;·&nbsp; יוצרת &nbsp;·&nbsp; אשת השראה</p>
-    <a href="#about" class="hero-cta">לחוות את תהילה</a>
+    <a href="#about" class="hero-cta">הסיפור שלי</a>
   </div>
   <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-line"></div>
@@ -275,12 +504,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <!-- ABOUT -->
 <section class="about" id="about" aria-labelledby="about-h">
   <div class="about-text">
-    <span class="eyebrow">הסיפור שלי</span>
-    <h2 id="about-h">עניין של בחירה</h2>
+    <span class="eyebrow">מי אני</span>
+    <h2 id="about-h">הסיפור שלי</h2>
     <div class="gold-rule" aria-hidden="true"></div>
     <p>תהילה סממה היא זמרת נשמה, יוצרת ומרצה מירוחם. סיפור חייה הוא עדות מעוררת השראה לכך שבעזרת אמונה עמוקה, כוח רצון ועבודה קשה — ניתן לפרוץ כל תקרת זכוכית.</p>
-    <p>עם קול שמגע בנשמה ומילים שנגעות בלב, היא מחברת בין אנשים לסיפורם שלהם. המוטו המוביל אותה הוא: <em style="color:var(--gold);font-style:normal">"הכל עניין של בחירה"</em>.</p>
-    <button class="btn-bio" onclick="openModal('bio-modal')" aria-haspopup="dialog">קצת עליי ›</button>
+    <p>עם קול שנוגע בנשמה ומילים שנוגעות בלב, היא מחברת בין אנשים לסיפורם שלהם. המוטו המוביל אותה הוא: <strong style="font-weight:500;color:var(--brown-deep)">"הכל עניין של בחירה"</strong>.</p>
+    <button class="btn-bio" onclick="openModal('bio-modal')" aria-haspopup="dialog">
+      <i class="fa-regular fa-user" aria-hidden="true"></i>
+      קצת עליי
+    </button>
   </div>
   <div class="about-images">
     <img class="about-img" src="data:image/jpeg;base64,ABOUT1_B64" alt="תהילה בשקיעה ליד הנחל">
@@ -292,7 +524,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <section class="services" id="services" aria-labelledby="services-h">
   <div class="services-inner">
     <div class="sec-head">
-      <span class="eyebrow" style="color:var(--gold)">מה אנחנו מציעים</span>
+      <span class="eyebrow">מה אנחנו מציעים</span>
       <h2 id="services-h">תחומי פעילות</h2>
       <div class="gold-rule-c" aria-hidden="true"></div>
     </div>
@@ -364,7 +596,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <input type="text" placeholder="שם מלא" aria-label="שם מלא" required>
     <input type="email" placeholder="כתובת מייל" aria-label="כתובת מייל" required>
     <input type="tel" placeholder="טלפון (אופציונלי)" aria-label="מספר טלפון">
-    <select aria-label="סוג האירוע"><option value="" disabled selected>סוג האירוע</option><option>הופעה</option><option>חופה</option><option>ערב התעוררות</option><option>שיעורי פיתוח קול</option><option>קבלת פנים / אירוע</option><option>אחר</option></select>
+    <select aria-label="סוג האירוע">
+      <option value="" disabled selected>סוג האירוע</option>
+      <option>הופעה</option><option>חופה</option>
+      <option>ערב התעוררות</option><option>שיעורי פיתוח קול</option>
+      <option>קבלת פנים / אירוע</option><option>אחר</option>
+    </select>
     <textarea placeholder="ספרו לנו קצת על האירוע..." aria-label="פרטי האירוע"></textarea>
     <button class="btn-submit" type="submit">שלח פנייה</button>
   </form>
@@ -374,23 +611,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <footer role="contentinfo">
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="footer-logo-wrap">
+      <div>
         <span class="footer-logo">תהילה</span>
         <span class="footer-tagline">זמרת · יוצרת · אשת השראה</span>
-
         <div class="music-links" aria-label="קישורי מוזיקה">
           <a class="music-link" href="https://orcd.co/tehila" target="_blank" rel="noopener" aria-label="האלבום של תהילה">
             <i class="fa-solid fa-record-vinyl" aria-hidden="true"></i> האלבום שלי
           </a>
-          <a class="music-link" href="https://orcd.co/tehilahamalach" target="_blank" rel="noopener" aria-label="הסינגל תהילה המלאך">
+          <a class="music-link" href="https://orcd.co/tehilahamalach" target="_blank" rel="noopener" aria-label="סינגל תהילה המלאך">
             <i class="fa-solid fa-music" aria-hidden="true"></i> תהילה המלאך
           </a>
         </div>
       </div>
-
-      <nav aria-label="רשתות חברתיות" style="display:flex;flex-direction:column;gap:0.8rem;align-items:flex-start">
-        <span style="font-size:0.65rem;letter-spacing:0.35em;color:rgba(255,255,255,0.3);font-weight:300;text-transform:uppercase">עקבו אחריי</span>
-        <div class="social-links">
+      <div class="footer-social-col">
+        <span class="social-label">עקבו אחריי</span>
+        <nav class="social-links" aria-label="רשתות חברתיות">
           <a class="social-link" href="https://wa.me/972503000558" target="_blank" rel="noopener" aria-label="וואטסאפ">
             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
           </a>
@@ -412,10 +647,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
           <a class="social-link" href="https://www.instagram.com/tehilasamama?igsh=NnA1ZTcwc2x2aXZ1" target="_blank" rel="noopener" aria-label="אינסטגרם">
             <i class="fa-brands fa-instagram" aria-hidden="true"></i>
           </a>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </div>
-
     <div class="footer-bottom">
       <p class="footer-copy">© 2025 תהילה סממה · כל הזכויות שמורות · בס"ד</p>
       <div class="footer-contact-links">
@@ -426,9 +660,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </footer>
 
-<!-- ====== MODALS ====== -->
+<!-- ===== MODALS ===== -->
 
-<!-- BIO MODAL -->
+<!-- BIO -->
 <div class="modal-overlay" id="bio-modal" role="dialog" aria-modal="true" aria-labelledby="bio-title">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('bio-modal')" aria-label="סגור חלון">✕</button>
@@ -439,17 +673,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <span class="modal-bsd">בס"ד</span>
       <p>תהילה סממה (30), תושבת ירוחם, היא זמרת נשמה, יוצרת ומרצה. סיפור חייה הוא עדות מעוררת השראה לכך שבעזרת אמונה עמוקה, כוח רצון ועבודה קשה, ניתן לפרוץ כל תקרת זכוכית, להתגבר על מכשולים ולהפוך אתגרי חיים למנופי צמיחה והצלחה.</p>
       <h3>תחנות חיים ושילוב בחברה</h3>
-      <p>תהילה, עיוורת מלידה, צמחה מתוך מסלול ייחודי של שילוב והתמודדות. כבר בגן חובה שולבה במסלול דו-ערוצי, צעד שפתח בפניה את הצוהר להשתלבות מלאה בחברה. המשך דרכה היה במסגרות חינוך רגילות לחלוטין – החל מבית הספר היסודי ועד לתיכון, שם בלטה כמנהיגה צעירה, שימשה כמדריכה בתנועת נוער והייתה פעילה מאוד ביוזמות ופרויקטים נוספים.</p>
-      <h3>פריצת דרך וליווי בעולם החינוך</h3>
-      <p>את דרכה בעולם החינוך החלה תהילה כבר במהלך שירותה הלאומי. מתוך החיבור העמוק לשטח, היא המשיכה לעסוק בתחום במשך שמונה שנים; מעבר ללמידה המשמעותית, תהילה היוותה עבור תלמידיה דמות מלווה ואוזן קשבת. על עשייתה יוצאת הדופן זכתה בפרס <strong>"פורצת דרך בחינוך"</strong> מטעם עמותת וראייטי.</p>
+      <p>תהילה, עיוורת מלידה, צמחה מתוך מסלול ייחודי של שילוב והתמודדות. כבר בגן חובה שולבה במסלול דו-ערוצי, צעד שפתח בפניה את הצוהר להשתלבות מלאה בחברה. המשך דרכה היה במסגרות חינוך רגילות לחלוטין – עד לתיכון, שם בלטה כמנהיגה צעירה, שימשה כמדריכה בתנועת נוער והייתה פעילה ביוזמות ופרויקטים נוספים.</p>
+      <h3>פריצת דרך בעולם החינוך</h3>
+      <p>את דרכה בחינוך החלה תהילה במהלך שירותה הלאומי. מתוך החיבור העמוק לשטח, המשיכה לעסוק בתחום במשך שמונה שנים — מעבר ללמידה המשמעותית, תהילה היוותה עבור תלמידיה דמות מלווה ואוזן קשבת. על עשייתה זכתה בפרס <strong style="font-weight:600">"פורצת דרך בחינוך"</strong> מטעם עמותת וראייטי.</p>
       <h3>מוזיקה, השראה והמוטו לחיים</h3>
-      <p>במקביל לעשייתה החינוכית, המוזיקה והבמה תמיד היוו את מרכז הווייתה של תהילה. היא סיימה לימודים מקצועיים במוזיקה, הוציאה מספר אלבומים ומופיעה ברחבי הארץ תוך השקת סינגלים חדשים. תהילה פועלת מתוך שליחות, כשהמוטו המוביל אותה הוא:</p>
-      <p style="text-align:center;font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;font-weight:300;color:var(--brown-deep);font-style:italic;padding:1rem 0">"הכל עניין של בחירה"</p>
+      <p>המוזיקה והבמה תמיד היוו את מרכז הווייתה. היא סיימה לימודים מקצועיים במוזיקה, הוציאה מספר אלבומים ומופיעה ברחבי הארץ. תהילה פועלת מתוך שליחות, כשהמוטו המוביל אותה הוא:</p>
+      <p style="text-align:center;font-family:'Noto Serif Hebrew',serif;font-size:1.15rem;font-weight:300;color:var(--brown-deep);padding:1.2rem 0">"הכל עניין של בחירה"</p>
     </div>
   </div>
 </div>
 
-<!-- SERVICE MODAL 1 -->
+<!-- SERVICE 1 -->
 <div class="modal-overlay" id="s1-modal" role="dialog" aria-modal="true" aria-labelledby="s1-title">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('s1-modal')" aria-label="סגור חלון">✕</button>
@@ -464,7 +698,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </div>
 
-<!-- SERVICE MODAL 2 -->
+<!-- SERVICE 2 -->
 <div class="modal-overlay" id="s2-modal" role="dialog" aria-modal="true" aria-labelledby="s2-title">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('s2-modal')" aria-label="סגור חלון">✕</button>
@@ -478,7 +712,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </div>
 
-<!-- SERVICE MODAL 3 -->
+<!-- SERVICE 3 -->
 <div class="modal-overlay" id="s3-modal" role="dialog" aria-modal="true" aria-labelledby="s3-title">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('s3-modal')" aria-label="סגור חלון">✕</button>
@@ -486,13 +720,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <h2 id="s3-title">"ואפילו בהסתרה" — ערב התעוררות</h2>
     <div class="modal-divider" aria-hidden="true"></div>
     <div class="modal-body">
-      <p>משדרות, עוטף עזה ועד אליכם — ערב של חיבור, אמונה והתעוררות הלב. תהילה סממה בערב שכולו שירה, ניגון, ודיבורים המשיבים את הנפש ומחזקים את האמונה והחוסן, במיוחד בתקופות מאתגרות.</p>
+      <p>משדרות, עוטף עזה ועד אליכם — ערב של חיבור, אמונה והתעוררות הלב. תהילה סממה בערב שכולו שירה, ניגון, ודיבורים המשיבים את הנפש ומחזקים את האמונה והחוסן.</p>
       <p>ערב חובה לקהילות, ישובים ומפגשי חיזוק.</p>
     </div>
   </div>
 </div>
 
-<!-- SERVICE MODAL 4 -->
+<!-- SERVICE 4 -->
 <div class="modal-overlay" id="s4-modal" role="dialog" aria-modal="true" aria-labelledby="s4-title">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('s4-modal')" aria-label="סגור חלון">✕</button>
@@ -506,12 +740,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </div>
 
-<!-- SERVICE MODAL 5 -->
+<!-- SERVICE 5 -->
 <div class="modal-overlay" id="s5-modal" role="dialog" aria-modal="true" aria-labelledby="s5-title">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('s5-modal')" aria-label="סגור חלון">✕</button>
     <span class="modal-eyebrow">תחום פעילות</span>
-    <h2 id="s5-title">קבלות פנים והופעות לאירועים</h2>
+    <h2 id="s5-title">קבלות פנים ואירועים</h2>
     <div class="modal-divider" aria-hidden="true"></div>
     <div class="modal-body">
       <p>מחפשים ערך מוסף מוזיקלי ויוקרתי לאירוע שלכם? תהילה מגיעה להופעות חיות, קבלות פנים מעוצבות, ואירועי חברה וארגונים.</p>
@@ -522,30 +756,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <script>
 function openModal(id) {
-  const overlay = document.getElementById(id);
-  overlay.classList.add('open');
+  const el = document.getElementById(id);
+  el.classList.add('open');
   document.body.style.overflow = 'hidden';
-  const focusable = overlay.querySelector('button,a,[tabindex]');
-  if (focusable) setTimeout(() => focusable.focus(), 50);
+  setTimeout(() => el.querySelector('button')?.focus(), 60);
 }
-
 function closeModal(id) {
-  const overlay = document.getElementById(id);
-  overlay.classList.remove('open');
+  document.getElementById(id).classList.remove('open');
   document.body.style.overflow = '';
 }
-
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) closeModal(overlay.id);
-  });
-  overlay.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal(overlay.id);
-  });
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) closeModal(o.id) });
+  o.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(o.id) });
 });
 
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), {passive:true});
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
 
 document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
   e.preventDefault();
