@@ -39,51 +39,43 @@ h3,h4,p,a,button,input,select,textarea,label,li,span.eyebrow,cite{font-family:'A
 /* ====== NAV ====== */
 nav{
   position:fixed;top:0;right:0;left:0;z-index:200;
-  transition:background 0.4s,backdrop-filter 0.4s,box-shadow 0.4s;
+  background:#fdfbf7;
+  box-shadow:0 2px 12px rgba(44,36,22,0.07);
+  transition:box-shadow 0.4s;
 }
 .nav-spiritual{
   display:flex;justify-content:space-between;align-items:center;
   padding:0.35rem 3.5rem;
   font-family:'Assistant',sans-serif;
   font-size:11px;font-weight:400;
-  color:rgba(255,255,255,0.28);
+  color:rgba(107,87,68,0.45);
   letter-spacing:0.08em;
-  border-bottom:1px solid rgba(255,255,255,0.05);
-  transition:color 0.4s,border-color 0.4s;
+  border-bottom:1px solid rgba(201,168,76,0.15);
 }
 .nav-main{
   display:flex;align-items:center;justify-content:space-between;
   padding:1.1rem 3.5rem;
 }
 nav.scrolled{
-  background:#F5EDD8;
-  backdrop-filter:blur(12px);
-  box-shadow:0 2px 20px rgba(44,36,22,0.1);
+  box-shadow:0 2px 20px rgba(44,36,22,0.12);
 }
-nav.scrolled .nav-spiritual{
-  color:rgba(107,87,68,0.5);
-  border-bottom-color:rgba(201,168,76,0.18);
-}
-nav.scrolled .nav-logo{color:var(--brown-deep)}
-nav.scrolled .nav-links a{color:var(--brown-mid)}
-nav.scrolled .nav-links a:hover{color:var(--gold)}
-
 .nav-logo{
   font-family:'Noto Serif Hebrew',serif;
   font-size:1.4rem;font-weight:200;
-  color:#fff;text-decoration:none;
+  color:var(--brown-deep);text-decoration:none;
   letter-spacing:0.1em;
-  transition:color 0.4s;
+  transition:color 0.3s;
 }
+.nav-logo:hover{color:var(--gold)}
 .nav-links{display:flex;gap:2.2rem;list-style:none}
 .nav-links a{
-  color:rgba(255,255,255,0.78);
+  color:var(--brown-mid);
   text-decoration:none;
   font-size:0.88rem;font-weight:400;
   letter-spacing:0.06em;
   transition:color 0.2s;
 }
-.nav-links a:hover{color:var(--gold-light)}
+.nav-links a:hover{color:var(--gold)}
 
 /* ====== HERO ====== */
 .hero{
@@ -493,33 +485,32 @@ footer{background:var(--hero-dark);padding:4rem 5rem}
   color:var(--gold);letter-spacing:0.2em;margin-bottom:1.4rem;display:block;
 }
 
-/* ====== FLOATING SOCIAL BAR ====== */
-.social-share-bar{
-  position:fixed;
-  left:20px;
-  top:50%;
-  transform:translateY(-50%);
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-  background:rgba(253,251,247,0.8);
-  padding:12px;
-  border-radius:30px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.05);
-  border:1px solid rgba(212,175,55,0.3);
-  z-index:9999;
+/* ====== FLOATING SOCIAL SIDEBAR ====== */
+.social-sidebar {
+  position: fixed !important;
+  left: 20px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
+  background: rgba(253, 251, 247, 0.9) !important;
+  padding: 12px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  z-index: 99999 !important;
 }
-.social-share-bar a{
-  color:#d4af37;
-  font-size:20px;
-  transition:transform 0.2s;
-  text-decoration:none;
-  display:flex;align-items:center;justify-content:center;
+.social-sidebar a {
+  color: #d4af37 !important;
+  font-size: 20px !important;
+  transition: transform 0.2s !important;
+  display: block !important;
+  text-decoration: none !important;
 }
-.social-share-bar a:hover{
-  transform:scale(1.1);
+.social-sidebar a:hover {
+  transform: scale(1.1) !important;
 }
-.social-share-bar a:focus-visible{outline:2px solid #d4af37;outline-offset:2px;border-radius:4px}
 
 /* ====== ANIMATIONS ====== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
@@ -538,7 +529,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   footer{padding:3rem 2rem}
   .footer-top{flex-direction:column}
   .modal{padding:2.5rem 2rem 2rem;border-radius:12px}
-  .social-share-bar{display:none}
+  .social-sidebar{display:none !important}
 }
 @media(max-width:600px){
   .nav-links{gap:1rem}
@@ -565,7 +556,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 </nav>
 
 <!-- FLOATING SOCIAL BAR -->
-<nav class="social-share-bar" aria-label="רשתות חברתיות">
+<nav class="social-sidebar" aria-label="רשתות חברתיות">
   <a href="https://wa.me/972503000558" target="_blank" rel="noopener" aria-label="וואטסאפ"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
   <a href="https://www.instagram.com/tehilasamama?igsh=NnA1ZTcwc2x2aXZ1" target="_blank" rel="noopener" aria-label="אינסטגרם"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
   <a href="https://www.facebook.com/tehilasamama/" target="_blank" rel="noopener" aria-label="פייסבוק"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
