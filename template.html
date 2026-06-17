@@ -56,17 +56,17 @@ nav{
   padding:1.1rem 3.5rem;
 }
 nav.scrolled{
-  background:rgba(250,247,242,0.96);
-  backdrop-filter:blur(16px);
-  box-shadow:0 1px 24px rgba(44,36,22,0.08);
+  background:rgba(36,24,14,0.93);
+  backdrop-filter:blur(18px);
+  box-shadow:0 1px 32px rgba(0,0,0,0.22);
 }
 nav.scrolled .nav-spiritual{
-  color:rgba(107,87,68,0.5);
-  border-bottom-color:rgba(201,168,76,0.12);
+  color:rgba(226,201,126,0.35);
+  border-bottom-color:rgba(201,168,76,0.1);
 }
-nav.scrolled .nav-logo{color:var(--brown-deep)}
-nav.scrolled .nav-links a{color:var(--brown-mid)}
-nav.scrolled .nav-links a:hover{color:var(--gold)}
+nav.scrolled .nav-logo{color:#fff}
+nav.scrolled .nav-links a{color:rgba(255,255,255,0.7)}
+nav.scrolled .nav-links a:hover{color:var(--gold-light)}
 
 .nav-logo{
   font-family:'Noto Serif Hebrew',serif;
@@ -202,45 +202,50 @@ nav.scrolled .nav-links a:hover{color:var(--gold)}
   gap:1.4rem;
 }
 .card{
-  background:#fff;
+  background:linear-gradient(145deg,#2A1E10,#1E1509);
   border-radius:12px;
   padding:2.8rem 2rem 2.4rem;
   text-align:center;
   cursor:pointer;
-  border:none;width:100%;color:inherit;
-  box-shadow:var(--card-shadow);
-  transition:transform 0.28s ease,box-shadow 0.28s ease;
+  border:1px solid rgba(201,168,76,0.22);
+  width:100%;color:inherit;
+  box-shadow:0 4px 24px rgba(0,0,0,0.25);
+  transition:transform 0.28s ease,box-shadow 0.28s ease,border-color 0.28s ease;
   position:relative;overflow:hidden;
 }
-.card::after{
-  content:'';position:absolute;bottom:0;right:0;left:0;
-  height:2px;background:linear-gradient(to left,var(--gold),transparent);
-  opacity:0;transition:opacity 0.3s;
+.card::before{
+  content:'';position:absolute;inset:0;border-radius:12px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.08) 0%,transparent 65%);
+  pointer-events:none;
 }
-.card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-hover)}
-.card:hover::after{opacity:1}
+.card::after{
+  content:'';position:absolute;top:0;right:0;left:0;
+  height:1px;background:linear-gradient(to left,transparent,var(--gold),transparent);
+  opacity:0.4;transition:opacity 0.3s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,0.35);border-color:rgba(201,168,76,0.55)}
+.card:hover::after{opacity:0.9}
 .card:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.card-letter{
-  font-family:'Noto Serif Hebrew',serif;
-  font-size:2.5rem;font-weight:100;
-  color:var(--gold);opacity:0.4;
-  margin-bottom:1rem;display:block;line-height:1;
+.card-icon{
+  font-size:1.6rem;color:var(--gold);
+  margin-bottom:1.2rem;display:block;
+  opacity:0.85;
 }
 .card h3{
   font-family:'Assistant',sans-serif;
   font-size:1.05rem;font-weight:600;
-  color:var(--brown-deep);margin-bottom:0.65rem;letter-spacing:0.02em;
+  color:#fff;margin-bottom:0.65rem;letter-spacing:0.02em;
 }
 .card p{
   font-family:'Assistant',sans-serif;
   font-size:0.85rem;font-weight:300;
-  color:var(--brown-mid);line-height:1.75;
+  color:rgba(255,255,255,0.5);line-height:1.75;
 }
 .card-more{
   display:inline-block;margin-top:1.3rem;
   font-family:'Assistant',sans-serif;
   font-size:0.72rem;font-weight:500;
-  letter-spacing:0.2em;color:var(--gold);opacity:0.8;
+  letter-spacing:0.2em;color:var(--gold-light);opacity:0.75;
 }
 
 /* ====== TESTIMONIALS ====== */
@@ -385,23 +390,31 @@ footer{background:var(--hero-dark);padding:4rem 5rem}
 }
 .modal-overlay.open{display:flex}
 .modal{
-  background:var(--cream);
+  background:#FDF8F1;
+  border:1px solid rgba(201,168,76,0.45);
   border-radius:16px;
   max-width:700px;width:100%;
   max-height:88vh;overflow-y:auto;
   position:relative;
   padding:3.5rem 4rem 3.2rem;
   animation:modalIn 0.32s cubic-bezier(.22,.61,.36,1) both;
-  box-shadow:0 24px 80px rgba(0,0,0,0.35);
+  box-shadow:0 28px 90px rgba(0,0,0,0.4),inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+.modal::before{
+  content:'';position:absolute;top:0;right:0;left:0;height:3px;
+  background:linear-gradient(to left,transparent,var(--gold),transparent);
+  border-radius:16px 16px 0 0;opacity:0.7;pointer-events:none;
 }
 .modal-close{
-  position:absolute;top:1.4rem;left:1.6rem;
-  background:transparent;border:none;cursor:pointer;
-  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
-  color:var(--brown-mid);font-size:1rem;border-radius:50%;
-  transition:background 0.2s,color 0.2s;
+  position:absolute;top:1.2rem;left:1.4rem;
+  background:transparent;
+  border:1px solid rgba(201,168,76,0.35);
+  cursor:pointer;
+  width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  color:var(--brown-mid);font-size:0.8rem;border-radius:50%;
+  transition:all 0.2s;
 }
-.modal-close:hover{background:var(--pearl);color:var(--brown-deep)}
+.modal-close:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
 .modal-close:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .modal-eyebrow{
   font-family:'Assistant',sans-serif;
@@ -411,8 +424,8 @@ footer{background:var(--hero-dark);padding:4rem 5rem}
 }
 .modal h2{
   font-family:'Noto Serif Hebrew',serif;
-  font-size:clamp(1.6rem,3vw,2.2rem);font-weight:200;
-  color:var(--brown-deep);line-height:1.25;
+  font-size:clamp(1.6rem,3vw,2.3rem);font-weight:300;
+  color:#8B6914;line-height:1.25;
 }
 .modal-divider{width:36px;height:1px;background:var(--gold);margin:1.4rem 0;opacity:0.6}
 .modal-body{
@@ -504,8 +517,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <!-- ABOUT -->
 <section class="about" id="about" aria-labelledby="about-h">
   <div class="about-text">
-    <span class="eyebrow">מי אני</span>
-    <h2 id="about-h">הסיפור שלי</h2>
+    <span class="eyebrow">אודות</span>
+    <h2 id="about-h">קצת עליי</h2>
     <div class="gold-rule" aria-hidden="true"></div>
     <p>תהילה סממה היא זמרת נשמה, יוצרת ומרצה מירוחם. סיפור חייה הוא עדות מעוררת השראה לכך שבעזרת אמונה עמוקה, כוח רצון ועבודה קשה — ניתן לפרוץ כל תקרת זכוכית.</p>
     <p>עם קול שנוגע בנשמה ומילים שנוגעות בלב, היא מחברת בין אנשים לסיפורם שלהם. המוטו המוביל אותה הוא: <strong style="font-weight:500;color:var(--brown-deep)">"הכל עניין של בחירה"</strong>.</p>
@@ -530,31 +543,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     </div>
     <div class="cards" role="list">
       <button class="card" role="listitem" onclick="openModal('s1-modal')" aria-haspopup="dialog">
-        <span class="card-letter" aria-hidden="true">א</span>
+        <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-heart"></i></span>
         <h3>מופע "עניין של בחירה"</h3>
         <p>מופע סיפור חיים מוזיקלי ומרגש עד דמעות</p>
         <span class="card-more">לפרטים נוספים ›</span>
       </button>
       <button class="card" role="listitem" onclick="openModal('s2-modal')" aria-haspopup="dialog">
-        <span class="card-letter" aria-hidden="true">ב</span>
+        <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-ring"></i></span>
         <h3>חופות מרגשות</h3>
         <p>שירה חיה ועוצמתית לרגע המקודש ביותר</p>
         <span class="card-more">לפרטים נוספים ›</span>
       </button>
       <button class="card" role="listitem" onclick="openModal('s3-modal')" aria-haspopup="dialog">
-        <span class="card-letter" aria-hidden="true">ג</span>
+        <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-star-and-crescent"></i></span>
         <h3>ערב התעוררות</h3>
         <p>חיבור, אמונה והתעוררות הלב לקהילות וישובים</p>
         <span class="card-more">לפרטים נוספים ›</span>
       </button>
       <button class="card" role="listitem" onclick="openModal('s4-modal')" aria-haspopup="dialog">
-        <span class="card-letter" aria-hidden="true">ד</span>
+        <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-microphone"></i></span>
         <h3>שיעורי פיתוח קול</h3>
         <p>גלו את העוצמה של הקול שלכם עם מקצוענית</p>
         <span class="card-more">לפרטים נוספים ›</span>
       </button>
       <button class="card" role="listitem" onclick="openModal('s5-modal')" aria-haspopup="dialog">
-        <span class="card-letter" aria-hidden="true">ה</span>
+        <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-music"></i></span>
         <h3>קבלות פנים ואירועים</h3>
         <p>ערך מוסף מוזיקלי ויוקרתי לאירועים וארגונים</p>
         <span class="card-more">לפרטים נוספים ›</span>
