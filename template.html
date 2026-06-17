@@ -56,13 +56,13 @@ nav{
   padding:1.1rem 3.5rem;
 }
 nav.scrolled{
-  background:rgba(242,235,222,0.97);
-  backdrop-filter:blur(18px);
-  box-shadow:0 1px 24px rgba(44,36,22,0.09);
+  background:#F5EDD8;
+  backdrop-filter:blur(12px);
+  box-shadow:0 2px 20px rgba(44,36,22,0.1);
 }
 nav.scrolled .nav-spiritual{
-  color:rgba(107,87,68,0.45);
-  border-bottom-color:rgba(201,168,76,0.15);
+  color:rgba(107,87,68,0.5);
+  border-bottom-color:rgba(201,168,76,0.18);
 }
 nav.scrolled .nav-logo{color:var(--brown-deep)}
 nav.scrolled .nav-links a{color:var(--brown-mid)}
@@ -494,30 +494,32 @@ footer{background:var(--hero-dark);padding:4rem 5rem}
 }
 
 /* ====== FLOATING SOCIAL BAR ====== */
-.social-float{
-  position:fixed;left:20px;top:50%;transform:translateY(-50%);
-  z-index:1000;
-  display:flex;flex-direction:column;align-items:center;
-  gap:4px;
+.social-share-bar{
+  position:fixed;
+  left:20px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  background:rgba(253,251,247,0.8);
+  padding:12px;
+  border-radius:30px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.05);
+  border:1px solid rgba(212,175,55,0.3);
+  z-index:9999;
 }
-.social-float a{
+.social-share-bar a{
+  color:#d4af37;
+  font-size:20px;
+  transition:transform 0.2s;
+  text-decoration:none;
   display:flex;align-items:center;justify-content:center;
-  width:36px;height:36px;
-  background:rgba(26,18,9,0.75);
-  border:1px solid rgba(201,168,76,0.25);
-  border-radius:50%;
-  color:rgba(255,255,255,0.55);
-  text-decoration:none;font-size:0.85rem;
-  transition:all 0.25s;
-  backdrop-filter:blur(8px);
 }
-.social-float a:hover{
-  background:var(--gold);
-  border-color:var(--gold);
-  color:#fff;
-  transform:scale(1.12);
+.social-share-bar a:hover{
+  transform:scale(1.1);
 }
-.social-float a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.social-share-bar a:focus-visible{outline:2px solid #d4af37;outline-offset:2px;border-radius:4px}
 
 /* ====== ANIMATIONS ====== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
@@ -536,7 +538,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   footer{padding:3rem 2rem}
   .footer-top{flex-direction:column}
   .modal{padding:2.5rem 2rem 2rem;border-radius:12px}
-  .social-float{display:none}
+  .social-share-bar{display:none}
 }
 @media(max-width:600px){
   .nav-links{gap:1rem}
@@ -563,7 +565,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 </nav>
 
 <!-- FLOATING SOCIAL BAR -->
-<nav class="social-float" aria-label="רשתות חברתיות">
+<nav class="social-share-bar" aria-label="רשתות חברתיות">
   <a href="https://wa.me/972503000558" target="_blank" rel="noopener" aria-label="וואטסאפ"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
   <a href="https://www.instagram.com/tehilasamama?igsh=NnA1ZTcwc2x2aXZ1" target="_blank" rel="noopener" aria-label="אינסטגרם"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
   <a href="https://www.facebook.com/tehilasamama/" target="_blank" rel="noopener" aria-label="פייסבוק"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
