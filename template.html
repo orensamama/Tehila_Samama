@@ -56,17 +56,17 @@ nav{
   padding:1.1rem 3.5rem;
 }
 nav.scrolled{
-  background:rgba(36,24,14,0.93);
+  background:rgba(248,244,237,0.97);
   backdrop-filter:blur(18px);
-  box-shadow:0 1px 32px rgba(0,0,0,0.22);
+  box-shadow:0 1px 24px rgba(44,36,22,0.09);
 }
 nav.scrolled .nav-spiritual{
-  color:rgba(226,201,126,0.35);
-  border-bottom-color:rgba(201,168,76,0.1);
+  color:rgba(107,87,68,0.45);
+  border-bottom-color:rgba(201,168,76,0.15);
 }
-nav.scrolled .nav-logo{color:#fff}
-nav.scrolled .nav-links a{color:rgba(255,255,255,0.7)}
-nav.scrolled .nav-links a:hover{color:var(--gold-light)}
+nav.scrolled .nav-logo{color:var(--brown-deep)}
+nav.scrolled .nav-links a{color:var(--brown-mid)}
+nav.scrolled .nav-links a:hover{color:var(--gold)}
 
 .nav-logo{
   font-family:'Noto Serif Hebrew',serif;
@@ -493,6 +493,33 @@ footer{background:var(--hero-dark);padding:4rem 5rem}
   color:var(--gold);letter-spacing:0.2em;margin-bottom:1.4rem;display:block;
 }
 
+/* ====== FLOATING SOCIAL BAR ====== */
+.social-float{
+  position:fixed;left:0;top:50%;transform:translateY(-50%);
+  z-index:150;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;
+}
+.social-float a{
+  display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;
+  background:rgba(26,18,9,0.72);
+  border:1px solid rgba(201,168,76,0.2);
+  border-left:none;
+  color:rgba(255,255,255,0.5);
+  text-decoration:none;font-size:0.88rem;
+  transition:all 0.25s;
+  backdrop-filter:blur(8px);
+}
+.social-float a:first-child{border-radius:0 6px 0 0}
+.social-float a:last-child{border-radius:0 0 6px 0}
+.social-float a:hover{
+  background:rgba(201,168,76,0.88);
+  border-color:var(--gold);
+  color:#fff;width:44px;
+}
+.social-float a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
 /* ====== ANIMATIONS ====== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:0.28}50%{opacity:0.1}}
@@ -504,20 +531,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 
 /* ====== RESPONSIVE ====== */
-@media(max-width:1000px){
-  .about-inner{grid-template-columns:1fr;justify-items:center;gap:2rem}
-  .about-photo{max-width:220px;aspect-ratio:3/4;margin:0 !important}
-  .about-photo-left{order:1}
-  .about-card{order:2;width:100%;max-width:420px}
-  .about-photo-right{order:3}
-}
 @media(max-width:960px){
-  .about{padding:5rem 2rem}
   nav .nav-spiritual,.nav-main{padding-right:1.5rem;padding-left:1.5rem}
   .services,.testimonials,.contact-section{padding:6rem 2rem}
   footer{padding:3rem 2rem}
   .footer-top{flex-direction:column}
   .modal{padding:2.5rem 2rem 2rem;border-radius:12px}
+  .social-float{display:none}
 }
 @media(max-width:600px){
   .nav-links{gap:1rem}
@@ -536,12 +556,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="nav-main">
     <a href="#" class="nav-logo" aria-label="תהילה — עמוד הבית">תהילה</a>
     <ul class="nav-links">
-      <li><a href="#about">אודות</a></li>
       <li><a href="#services">תחומי פעילות</a></li>
       <li><a href="#testimonials">המלצות</a></li>
       <li><a href="#contact">צור קשר</a></li>
     </ul>
   </div>
+</nav>
+
+<!-- FLOATING SOCIAL BAR -->
+<nav class="social-float" aria-label="רשתות חברתיות">
+  <a href="https://wa.me/972503000558" target="_blank" rel="noopener" aria-label="וואטסאפ"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+  <a href="https://www.instagram.com/tehilasamama?igsh=NnA1ZTcwc2x2aXZ1" target="_blank" rel="noopener" aria-label="אינסטגרם"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+  <a href="https://www.facebook.com/tehilasamama/" target="_blank" rel="noopener" aria-label="פייסבוק"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+  <a href="https://www.youtube.com/channel/UCDDVmE_N5D4ihl7s6c11cVQ" target="_blank" rel="noopener" aria-label="יוטיוב"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+  <a href="https://www.tiktok.com/@tehilasamama?lang=he-IL" target="_blank" rel="noopener" aria-label="טיקטוק"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+  <a href="tel:0503000558" aria-label="טלפון"><i class="fa-solid fa-phone" aria-hidden="true"></i></a>
+  <a href="mailto:tehila73@gmail.com" aria-label="מייל"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
 </nav>
 
 <!-- HERO -->
@@ -560,7 +590,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     </div>
     <p class="hero-tagline">מוזיקה · <em>השראה</em> · סיפור חיים</p>
     <p class="hero-sub">זמרת &nbsp;·&nbsp; יוצרת &nbsp;·&nbsp; אשת השראה</p>
-    <a href="#about" class="hero-cta">הסיפור שלי</a>
+    <button class="hero-cta" onclick="openModal('bio-modal')" aria-haspopup="dialog">קצת עליי</button>
   </div>
   <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-line"></div>
@@ -568,29 +598,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="about" id="about" aria-labelledby="about-h">
-  <div class="about-inner">
-    <img class="about-photo about-photo-left" src="data:image/jpeg;base64,ABOUT1_B64" alt="תהילה בשקיעה ליד הנחל">
-
-    <div class="about-card" onclick="openModal('bio-modal')" role="button" tabindex="0"
-         aria-haspopup="dialog" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('bio-modal')">
-      <div class="about-card-ornament" aria-hidden="true">
-        <div class="about-card-ornament-line"></div>
-        <div class="about-card-ornament-diamond"></div>
-        <div class="about-card-ornament-line"></div>
-      </div>
-      <h2 id="about-h">קצת עליי</h2>
-      <p class="about-card-quote">"הכל עניין של בחירה"</p>
-      <button class="btn-bio" onclick="event.stopPropagation();openModal('bio-modal')" aria-haspopup="dialog">
-        <i class="fa-regular fa-user" aria-hidden="true"></i>
-        לקרוא את הסיפור שלי
-      </button>
-    </div>
-
-    <img class="about-photo about-photo-right" src="data:image/jpeg;base64,ABOUT2_B64" alt="תהילה בהופעה עם מיקרופון">
-  </div>
-</section>
 
 <!-- SERVICES -->
 <section class="services" id="services" aria-labelledby="services-h">
@@ -614,7 +621,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
         <span class="card-more">לפרטים נוספים ›</span>
       </button>
       <button class="card" role="listitem" onclick="openModal('s3-modal')" aria-haspopup="dialog">
-        <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-hands-praying"></i></span>
+        <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
         <h3>ערב התעוררות</h3>
         <p>חיבור, אמונה והתעוררות הלב לקהילות וישובים</p>
         <span class="card-more">לפרטים נוספים ›</span>
