@@ -54,19 +54,25 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
 /* ============================================================
    NAVIGATION — תמיד שמנת, לעולם לא לבן
    ============================================================ */
+#nav,
+#nav.scrolled,
+#nav *,
+nav#nav {
+  background-color: #fdfbf7 !important;
+  background: #fdfbf7 !important;
+}
+
 #nav {
   position: fixed;
   top: 0; right: 0; left: 0;
   z-index: 1000;
-  background-color: #fdfbf7 !important;
-  background: #fdfbf7 !important;
   border-bottom: 1px solid rgba(212,175,55,0.18);
-  box-shadow: 0 2px 16px rgba(44,36,22,0.06);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02) !important;
   transition: box-shadow 0.3s;
 }
 
 #nav.scrolled {
-  box-shadow: 0 4px 24px rgba(44,36,22,0.11);
+  box-shadow: 0 4px 24px rgba(44,36,22,0.11) !important;
 }
 
 .nav-spiritual {
@@ -351,37 +357,24 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
 }
 
 .card {
-  background-color: #f5f0e1 !important;
-  border: 1px solid #d4af37 !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+  background-color: #fbf9f1 !important;
+  border: 1px solid rgba(212,175,55,0.4) !important;
   border-radius: 12px !important;
   padding: 2.6rem 1.8rem 2.2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
   text-align: center;
   cursor: pointer;
   width: 100%;
   color: inherit;
-  transition: transform 0.28s, box-shadow 0.28s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
   position: relative;
   overflow: hidden;
 }
 
-.card::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0; left: 0;
-  height: 3px;
-  background: linear-gradient(to left, transparent, var(--gold), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 36px rgba(44,36,22,0.13);
-  border-color: var(--gold-dim);
+  transform: translateY(-5px) !important;
+  box-shadow: 0 6px 20px rgba(212,175,55,0.1) !important;
 }
-
-.card:hover::after { opacity: 1; }
 
 .card:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
@@ -394,17 +387,16 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
 }
 
 .card h3 {
-  font-size: 1.05rem;
+  font-size: 1.3rem !important;
   font-weight: 600;
-  color: #222222;
-  margin-bottom: 0.6rem;
+  color: #333333 !important;
+  margin-bottom: 10px !important;
 }
 
 .card p {
-  font-size: 0.88rem;
-  font-weight: 400;
-  color: #333333;
-  line-height: 1.75;
+  font-size: 0.95rem !important;
+  color: #666666 !important;
+  line-height: 1.5 !important;
 }
 
 .card-more {
