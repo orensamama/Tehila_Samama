@@ -58,16 +58,14 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
   position: fixed;
   top: 0; right: 0; left: 0;
   z-index: 1000;
-  background: #f5ede0 !important;
-  background-color: #f5ede0 !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-  transition: box-shadow 0.3s;
+  background: transparent;
+  transition: background 0.4s, box-shadow 0.4s;
 }
 
 #nav.scrolled {
   background: #f5ede0 !important;
   background-color: #f5ede0 !important;
-  box-shadow: 0 4px 20px rgba(44,36,22,0.09);
+  box-shadow: 0 4px 20px rgba(44,36,22,0.1);
 }
 
 .nav-spiritual {
@@ -77,9 +75,13 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
   padding: 0.3rem 3.5rem;
   font-size: 11px;
   font-weight: 400;
-  color: var(--brown-light);
+  color: rgba(255,255,255,0.45);
   letter-spacing: 0.08em;
-  border-bottom: 1px solid rgba(212,175,55,0.12);
+  transition: color 0.4s;
+}
+
+#nav.scrolled .nav-spiritual {
+  color: var(--brown-light);
 }
 
 .nav-main {
@@ -93,13 +95,16 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
   font-family: 'Noto Serif Hebrew', serif;
   font-size: 1.45rem;
   font-weight: 200;
-  color: var(--brown-deep);
+  color: #fff;
   text-decoration: none;
   letter-spacing: 0.12em;
-  transition: color 0.2s;
+  transition: color 0.4s;
 }
 
-.nav-logo:hover { color: var(--gold); }
+.nav-logo:hover { color: var(--gold-light); }
+
+#nav.scrolled .nav-logo { color: var(--brown-deep); }
+#nav.scrolled .nav-logo:hover { color: var(--gold); }
 
 .nav-links {
   display: flex;
@@ -108,15 +113,18 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
 }
 
 .nav-links a {
-  color: var(--brown-mid);
+  color: rgba(255,255,255,0.82);
   text-decoration: none;
   font-size: 0.88rem;
   font-weight: 400;
   letter-spacing: 0.06em;
-  transition: color 0.2s;
+  transition: color 0.4s;
 }
 
-.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover { color: var(--gold-light); }
+
+#nav.scrolled .nav-links a { color: var(--brown-mid); }
+#nav.scrolled .nav-links a:hover { color: var(--gold); }
 
 
 /* ============================================================
