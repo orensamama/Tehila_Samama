@@ -368,6 +368,149 @@ footer {
   .footer-top { flex-direction: column; }
 }
 
+
+/* ============================================================
+   ACCESSIBILITY TOOLBAR — self-contained, no external services
+   ============================================================ */
+html { --a11y-font-scale: 1; }
+
+html.a11y-grayscale { filter: grayscale(100%); }
+
+html.a11y-contrast body {
+  background: #000 !important;
+  color: #ffe28a !important;
+}
+
+html.a11y-contrast * {
+  background-color: #000 !important;
+  color: #ffe28a !important;
+  border-color: #ffe28a !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html.a11y-contrast .hero-img { filter: grayscale(100%) contrast(1.1) brightness(0.55) !important; }
+html.a11y-contrast img:not(.hero-img) { filter: grayscale(100%) contrast(1.1); opacity: 0.9; }
+html.a11y-contrast a,
+html.a11y-contrast button { text-decoration: underline !important; }
+html.a11y-contrast .a11y-toggle,
+html.a11y-contrast .a11y-panel { background: #000 !important; }
+
+html.a11y-links a {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 3px !important;
+  background: rgba(255, 220, 100, 0.22) !important;
+  border-radius: 3px;
+}
+
+.a11y-widget {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1200;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl;
+}
+
+.a11y-toggle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  border: none;
+  color: #241a10;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(184,146,62,0.4);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.a11y-toggle:hover { transform: scale(1.08); box-shadow: 0 14px 34px rgba(184,146,62,0.5); }
+.a11y-toggle:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+.a11y-panel {
+  position: absolute;
+  bottom: 64px;
+  left: 0;
+  width: 250px;
+  background: rgba(28,21,13,0.94);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  padding: 0.8rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.a11y-widget.open .a11y-panel { display: flex; animation: a11yIn 0.25s var(--ease) both; }
+
+@keyframes a11yIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.a11y-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--gold-light);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.4rem 0.6rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 0.3rem;
+}
+
+.a11y-reset {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.72rem;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: 'Assistant', sans-serif;
+}
+
+.a11y-reset:hover { color: #fff; }
+
+.a11y-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85rem;
+  font-family: 'Assistant', sans-serif;
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: right;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.a11y-item i { width: 18px; text-align: center; color: var(--gold-light); flex-shrink: 0; }
+.a11y-item:hover { background: rgba(201,162,74,0.16); border-color: rgba(201,162,74,0.4); }
+.a11y-item[aria-pressed="true"] { background: var(--gold-gradient); color: #241a10; border-color: transparent; }
+.a11y-item[aria-pressed="true"] i { color: #241a10; }
+.a11y-item:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+
+@media (max-width: 480px) {
+  .a11y-widget { bottom: 14px; left: 14px; }
+  .a11y-toggle { width: 46px; height: 46px; font-size: 19px; }
+  .a11y-panel { width: 76vw; max-width: 260px; bottom: 56px; }
+}
+
 </style>
 </head>
 <body>
@@ -464,6 +607,103 @@ footer {
   </div>
 </footer>
 
-<script src="https://cdn.enable.co.il/stg/license/enable-website-accessibility.js"></script>
+<!-- ACCESSIBILITY TOOLBAR -->
+<div class="a11y-widget" id="a11yWidget">
+  <button class="a11y-toggle" id="a11yToggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a11yPanel" aria-label="פתח תפריט נגישות">
+    <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
+  </button>
+  <div class="a11y-panel" id="a11yPanel" role="menu" aria-label="כלי נגישות">
+    <div class="a11y-panel-header">
+      <span>כלי נגישות</span>
+      <button class="a11y-reset" id="a11yReset" type="button">איפוס</button>
+    </div>
+    <button class="a11y-item" type="button" data-action="font-inc">
+      <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> הגדלת טקסט
+    </button>
+    <button class="a11y-item" type="button" data-action="font-dec">
+      <i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i> הקטנת טקסט
+    </button>
+    <button class="a11y-item" type="button" data-action="contrast" aria-pressed="false">
+      <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> ניגודיות גבוהה
+    </button>
+    <button class="a11y-item" type="button" data-action="grayscale" aria-pressed="false">
+      <i class="fa-solid fa-droplet-slash" aria-hidden="true"></i> גווני אפור
+    </button>
+    <button class="a11y-item" type="button" data-action="links" aria-pressed="false">
+      <i class="fa-solid fa-link" aria-hidden="true"></i> הדגשת קישורים
+    </button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var widget = document.getElementById('a11yWidget');
+  var toggle = document.getElementById('a11yToggle');
+  var panel = document.getElementById('a11yPanel');
+  var resetBtn = document.getElementById('a11yReset');
+  var STORAGE_KEY = 'tehilaA11ySettings';
+
+  var state = { fontStep: 0, contrast: false, grayscale: false, links: false };
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (saved) {
+      state.fontStep = saved.fontStep || 0;
+      state.contrast = !!saved.contrast;
+      state.grayscale = !!saved.grayscale;
+      state.links = !!saved.links;
+    }
+  } catch (e) {}
+
+  function apply() {
+    root.style.fontSize = (100 + state.fontStep * 10) + '%';
+    root.classList.toggle('a11y-contrast', state.contrast);
+    root.classList.toggle('a11y-grayscale', state.grayscale);
+    root.classList.toggle('a11y-links', state.links);
+    document.querySelectorAll('[data-action="contrast"]').forEach(function(b) { b.setAttribute('aria-pressed', state.contrast); });
+    document.querySelectorAll('[data-action="grayscale"]').forEach(function(b) { b.setAttribute('aria-pressed', state.grayscale); });
+    document.querySelectorAll('[data-action="links"]').forEach(function(b) { b.setAttribute('aria-pressed', state.links); });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  toggle.addEventListener('click', function() {
+    var isOpen = widget.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!widget.contains(e.target)) {
+      widget.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      widget.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  panel.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.dataset.action;
+    if (action === 'font-inc') state.fontStep = Math.min(state.fontStep + 1, 4);
+    if (action === 'font-dec') state.fontStep = Math.max(state.fontStep - 1, -2);
+    if (action === 'contrast') state.contrast = !state.contrast;
+    if (action === 'grayscale') state.grayscale = !state.grayscale;
+    if (action === 'links') state.links = !state.links;
+    apply();
+  });
+
+  resetBtn.addEventListener('click', function() {
+    state = { fontStep: 0, contrast: false, grayscale: false, links: false };
+    apply();
+  });
+
+  apply();
+})();
+</script>
 </body>
 </html>
