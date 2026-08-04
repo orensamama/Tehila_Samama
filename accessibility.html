@@ -133,24 +133,25 @@ h3, h4, p, a, button, li, span { font-family: 'Assistant', sans-serif; }
    ============================================================ */
 .social-sidebar {
   position: fixed !important;
-  left: 20px !important;
+  right: 20px !important;
+  left: auto !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 15px !important;
-  background: rgba(253, 251, 246, 0.6) !important;
+  gap: 14px !important;
+  background: rgba(28, 21, 13, 0.85) !important;
   backdrop-filter: blur(14px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
   padding: 12px !important;
   border-radius: 30px !important;
-  box-shadow: var(--shadow-soft) !important;
-  border: 1px solid rgba(255,255,255,0.7) !important;
-  z-index: 900 !important;
+  box-shadow: 0 10px 34px rgba(0,0,0,0.35) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  z-index: 800 !important;
 }
 
 .social-sidebar a {
-  color: var(--gold) !important;
+  color: var(--gold-light) !important;
   font-size: 20px !important;
   display: block !important;
   text-decoration: none !important;
@@ -158,10 +159,10 @@ h3, h4, p, a, button, li, span { font-family: 'Assistant', sans-serif; }
   line-height: 1 !important;
 }
 
-.social-sidebar a:hover { transform: scale(1.18) !important; color: var(--mint-deep) !important; }
+.social-sidebar a:hover { transform: scale(1.18) !important; color: #fff !important; }
 
 .social-sidebar a:focus-visible {
-  outline: 2px solid var(--gold) !important;
+  outline: 2px solid var(--gold-light) !important;
   outline-offset: 2px !important;
   border-radius: 4px !important;
 }
