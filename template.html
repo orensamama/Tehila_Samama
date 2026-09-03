@@ -624,17 +624,25 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
   flex-shrink: 0;
 }
 
+.music-card-featured-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.2rem;
+}
+
 .music-card-featured-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 1.2rem;
+  margin-top: 0;
   padding: 0.6rem 1.8rem;
   border: 1px solid rgba(212,175,55,0.55);
   color: var(--gold-light);
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.2em;
+  text-decoration: none;
   transition: all 0.3s;
 }
 
@@ -642,6 +650,32 @@ h3, h4, p, a, button, input, select, textarea, label, li, span {
   background: var(--gold);
   color: #fff;
   border-color: var(--gold);
+}
+
+.music-card-featured-cta-yt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.8rem;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: transparent;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  font-family: 'Assistant', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.music-card-featured-cta-yt:hover {
+  border-color: #ff4d4d;
+  color: #fff;
+  background: rgba(255,0,0,0.12);
+}
+
+@media (max-width: 600px) {
+  .music-card-featured-actions { justify-content: center; }
 }
 
 /* כרטיסיות אלבום */
@@ -1773,18 +1807,31 @@ html.a11y-links a {
     <div class="music-grid">
 
       <!-- סינגל חדש — במה מרכזית -->
-      <a class="music-card-featured" href="https://orcd.co/pashutmitgagat" target="_blank" rel="noopener" aria-label="פשוט מתגעגעת — סינגל חדש">
+      <div class="music-card-featured" aria-label="מחרוזת אלול — סינגל חדש">
         <div class="music-card-featured-text">
-          <span class="music-card-featured-badge">✦ סינגל חדש</span>
-          <span class="music-card-featured-title">פשוט מתגעגעת</span>
-          <span class="music-card-featured-cta">
-            <i class="fa-solid fa-headphones" aria-hidden="true"></i>
-            האזנה עכשיו
-          </span>
+          <span class="music-card-featured-badge">✦ סינגל חדש — לכבוד אלול</span>
+          <span class="music-card-featured-title">מחרוזת אלול</span>
+          <div class="music-card-featured-actions">
+            <a class="music-card-featured-cta" href="https://orcd.co/machrozetelul" target="_blank" rel="noopener">
+              <i class="fa-solid fa-headphones" aria-hidden="true"></i>
+              האזנה בכל הפלטפורמות
+            </a>
+            <button class="music-card-featured-cta-yt" type="button" onclick="playMedia('D1nAxrkSYdE','מחרוזת אלול','סינגל חדש')">
+              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+              צפייה ביוטיוב
+            </button>
+          </div>
         </div>
         <span class="music-card-featured-icon" aria-hidden="true">
           <i class="fa-solid fa-music"></i>
         </span>
+      </div>
+
+      <!-- סינגל קודם -->
+      <a class="music-card" href="https://orcd.co/pashutmitgagat" target="_blank" rel="noopener" aria-label="סינגל — פשוט מתגעגעת">
+        <span class="music-card-label">סינגל</span>
+        <span class="music-card-name">פשוט מתגעגעת</span>
+        <span class="music-card-arrow">האזנה ← </span>
       </a>
 
       <!-- אלבום 1 -->
@@ -2305,17 +2352,17 @@ if (!reduceMotion) {
 
 <!-- FLOATING SINGLE PLAYER -->
 <div class="single-player" id="singlePlayer">
-  <button class="single-player-btn" id="singlePlayerBtn" type="button" aria-label="נגן את הסינגל החדש — פשוט מתגעגעת">
+  <button class="single-player-btn" id="singlePlayerBtn" type="button" aria-label="נגן את הסינגל החדש — מחרוזת אלול">
     <i class="fa-solid fa-play" aria-hidden="true"></i>
   </button>
   <span class="single-player-info">
     <span class="single-player-label">
       <span class="single-player-pulse" aria-hidden="true"></span>
-      הסינגל החדש · פשוט מתגעגעת
+      הסינגל החדש · מחרוזת אלול
     </span>
-    <a class="single-player-link" href="https://orcd.co/pashutmitgagat" target="_blank" rel="noopener">לכל פלטפורמות הסטרימינג ←</a>
+    <a class="single-player-link" href="https://orcd.co/machrozetelul" target="_blank" rel="noopener">לכל פלטפורמות הסטרימינג ←</a>
   </span>
-  <audio id="singleAudio" preload="none" src="assets/audio/pashut-mitgaagaat.mp3"></audio>
+  <audio id="singleAudio" preload="none" src="assets/audio/machrozet-elul.m4a"></audio>
 </div>
 
 <script>
@@ -2346,14 +2393,14 @@ if (!reduceMotion) {
     icon.classList.remove('fa-play');
     icon.classList.add('fa-pause');
     btn.classList.add('is-playing');
-    btn.setAttribute('aria-label', 'השהה את הסינגל — פשוט מתגעגעת');
+    btn.setAttribute('aria-label', 'השהה את הסינגל — מחרוזת אלול');
   });
 
   audio.addEventListener('pause', function() {
     icon.classList.remove('fa-pause');
     icon.classList.add('fa-play');
     btn.classList.remove('is-playing');
-    btn.setAttribute('aria-label', 'נגן את הסינגל החדש — פשוט מתגעגעת');
+    btn.setAttribute('aria-label', 'נגן את הסינגל החדש — מחרוזת אלול');
   });
 
   audio.addEventListener('ended', function() {
